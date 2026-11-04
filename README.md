@@ -110,6 +110,24 @@ including ML and streaming examples.
 
 ---
 
+## Environment Setup (uv)
+
+This project uses `pyproject.toml` and `uv` for dependency management.
+
+Create and activate the virtual environment:
+
+```bash
+uv sync
+source .venv/bin/activate
+```
+
+Run commands through `uv` without activating:
+
+```bash
+uv run python run_python_examples.py
+uv run spark-submit chapter2/py/src/mnmcount.py
+```
+
 ## Prerequisites
 
 - Python 3.9–3.11
