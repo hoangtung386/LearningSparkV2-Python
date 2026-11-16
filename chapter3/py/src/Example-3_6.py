@@ -23,21 +23,23 @@ data = [[1, "Jules", "Damji", "https://tinyurl.1", "1/4/2016", 4535, ["twitter",
 # main program
 if __name__ == "__main__":
    #create a SparkSession
-   spark = (SparkSession
-       .builder
-       .appName("Example-3_6")
-       .getOrCreate())
+   spark = SparkSession.builder.appName("Example-3_6").getOrCreate()
+
    # create a DataFrame using the schema defined above
    blogs_df = spark.createDataFrame(data, schema)
+
    # show the DataFrame; it should reflect our table above
    blogs_df.show()
    print()
+
    # print the schema used by Spark to process the DataFrame
    print(blogs_df.printSchema())
+   
    # Show columns and expressions
    blogs_df.select(expr("Hits") * 2).show(2)
    blogs_df.select(col("Hits") * 2).show(2)
    blogs_df.select(expr("Hits * 2")).show(2)
+   
    # show heavy hitters
    blogs_df.withColumn("Big Hitters", (expr("Hits > 10000"))).show()
    print(blogs_df.schema)
